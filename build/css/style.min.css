@@ -1,0 +1,110 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #eee;
+  margin: 0;
+  padding: 0; }
+
+h1, h2, h3, p, div, b, span {
+  font-family: "Raleway"; }
+
+hr {
+  max-width: 450px;
+  opacity: .3; }
+
+a {
+  text-decoration: none; }
+
+.portfolio-item {
+  margin: 100px 0 120px 0;
+  display: flex;
+  justify-content: center; }
+
+.portfolio-display {
+  display: flex;
+  width: 400px;
+  margin-left: 60px;
+  height: 270px;
+  transform-style: preserve-3d; }
+
+.portfolio-content {
+  padding-left: 100px;
+  box-sizing: border-box; }
+
+.portfolio-content h1 {
+  flex-grow: .5;
+  text-transform: uppercase;
+  font-size: 3em;
+  max-width: 450px; }
+
+.portfolio-content p {
+  width: 80%;
+  max-width: 450px;
+  padding-left: 30px;
+  box-sizing: border-box;
+  line-height: 1.8em; }
+
+.portfolio-desktop, .portfolio-mobile {
+  background-size: cover !important; }
+
+.portfolio-desktop {
+  position: absolute;
+  width: 370px;
+  height: 250px;
+  margin: auto; }
+
+.portfolio-mobile {
+  position: absolute;
+  width: 140px;
+  height: 210px;
+  bottom: -20px;
+  right: 10px;
+  transform: translateZ(30px);
+  margin: auto; }
+
+.portfolio-display.right {
+  margin-left: -50px; }
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../img/bg.jpg");
+  background-position: 0 65%;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; }
+  .header svg {
+    position: relative;
+    display: block;
+    z-index: 10; }
+  .header h1 {
+    position: absolute;
+    z-index: 9;
+    display: block;
+    font-family: "Slim Joe";
+    color: #fff;
+    font-size: 4em; }
+  .header .darken {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.7); }
+
+@media (max-width: 800px) {
+  .portfolio-item, .portfolio-display, .portfolio-content {
+    display: block; } }
+
+#logo {
+  width: 70vw;
+  height: 50vh; }
+  #logo line {
+    stroke-width: 3 !important;
+    stroke-linecap: round; }
+
+#logo line {
+  stroke: #fff; }

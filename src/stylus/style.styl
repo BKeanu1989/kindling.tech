@@ -1,0 +1,989 @@
+$font = 'Archivo Narrow', sans-serif
+$font = 'Jaldi', sans-serif
+$color1 = #6bb
+$color2_light = #90F7E0
+$color2_dark = #009FC0
+$color_3 = #fff
+$color_3_dark = #eee
+
+$color-bg-light = #fafafa
+$color-bg = #f4f3ef
+
+$color-ui = url('../img/pattern.png')
+$color-text = #333
+$color-link = #008b8b
+
+$easing = cubic-bezier(.78,.04,.28,.96)
+$animate-duration = .9s
+
+// ------------------------------------------------------------------------------------
+// MIXINS
+// ------------------------------------------------------------------------------------
+media_queries = {
+ mobile : "only screen and (max-width: 600px)",
+ tablet : "only screen and (min-width: 601px) and (max-width: 800px)",
+ desktop : "only screen and (min-width: 801px) and (max-width: 1200px)"
+ wide  : "only screen and (min-width: 1201px)"
+}
+
+for_breakpoint(breakpoints)
+ conditions = ()
+ for breakpoint in breakpoints
+  push(conditions, media_queries[breakpoint])
+ conditions = join(", ", conditions)
+ @media conditions
+  {block}
+
+vendor(prop, args)
+ -webkit-{prop} args
+ -moz-{prop} args
+ -ms-{prop} args
+ -o-{prop} args
+ {prop} args
+
+border-radius()
+ vendor('border-radius', arguments)
+
+box-shadow()
+ vendor('box-shadow', arguments)
+
+transition()
+ vendor('transition', arguments)
+
+transform()
+ vendor('transform', arguments)
+
+transform-origin()
+ vendor('transform-origin', arguments)
+
+user-select()
+ vendor('user-select', arguments)
+
+background-linear-gradient(startPoint, startColor, startInterval, endColor, endInterval, deprecatedWebkitStartPoint = false, deprecatedWebkitEndPoint = false)
+ background-color startColor
+ if deprecatedWebkitStartPoint && deprecatedWebkitEndPoint
+  background-image -webkit-gradient(linear, deprecatedWebkitStartPoint, deprecatedWebkitEndPoint, color-stop(startInterval, startColor), color-stop(endInterval, endColor))
+ background-image -webkit-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+ background-image -moz-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+ background-image -ms-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+ background-image -o-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+ background-image linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+
+aspect-ratio(width, height)
+    position relative
+    &:before
+        display block
+        content ""
+        width 100%
+        padding-top (height / width) * 100%
+    > .content
+        position absolute
+        top 0
+        left 0
+        right 0
+        bottom 0
+
+// ------------------------------------------------------------------------------------
+// CSS BASIC
+// ------------------------------------------------------------------------------------
+
+
+div,span,h1,h2,h3,h4,h5,h6,p
+  font-family $font !important
+  font-weight 700 !important
+
+body
+  max-height 100vh
+  max-width 100vw
+  overflow hidden
+  background #64aaff
+  background-size cover
+  background-position bottom
+
+
+  $colortest1 = #ACF
+  $colortest1 = #0DF
+  $colortest2 = #0CF
+
+body{
+  background: $colortest1; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient($colortest1, $colortest2); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($colortest1, $colortest2); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($colortest1, $colortest2); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($colortest1, $colortest2); /* Standard syntax */
+}
+
+h1, h2, h3, h4, h5, p, b, span, input, textarea, div, button
+    font-family: 'Arvo', sans-serif;
+    font-weight 400 !important
+    letter-spacing -.0em !important
+
+img
+  padding 0
+  margin 0
+
+div
+    -moz-box-sizing border-box
+    -webkit-box-sizing border-box
+    box-sizing border-box
+
+input:focus
+    outline none
+
+a
+  color $color-link !important
+
+
+/* -------------------------------------------------------------------------------- */
+/* NAV */
+/* -------------------------------------------------------------------------------- */
+
+#nav
+  position absolute
+  bottom 10px
+  font-size 3vmin
+  width 100vw
+  margin auto
+  text-align center
+
+#next, #prev
+  position fixed
+  width 49vw
+  text-align center
+  padding 10px
+  background rgba(0,0,0,.1)
+
+#next
+  right 0
+  bottom 0
+
+#prev
+  left 0
+  bottom 0
+
+/* -------------------------------------------------------------------------------- */
+/* APP ANSWERS */
+/* -------------------------------------------------------------------------------- */
+.answer-btn
+  background rgba(0,0,0,0)
+  transition all .3s $easing
+  opacity 1
+  display inline-block
+  padding 20px
+  margin-top 0px
+  text-align center
+  width 50%
+  &:hover
+    cursor pointer
+    transform  rotate(7deg) scale(1.1,1.1)
+  img
+    text-align center
+    max-width 30vw
+    max-height 30vh
+
+#transition
+  position fixed
+  top 0
+  left 0
+  width 100vw
+  height 100vh
+  z-index -1
+
+.fullscreen
+  z-index 1000 !important
+
+.answer-text
+  text-align center
+  font-size calc(1.6vh + 1.6vw) !important
+  text-transform uppercase
+  font-weight 500
+  color #000
+
+.intro-hidden
+  opacity 0
+  margin-top 0px
+  transform scale(.5) rotate(0deg)
+  transition all .4s $easing
+
+#classroom
+  position fixed
+  top 0
+  left 0
+  z-index 10
+  position relative
+  max-height 100vh
+  height 100vh
+  width 100vw
+  max-width 100vw
+  padding 0 10px
+  box-sizing border-box
+  margin auto
+  transition all .7s $easing
+  transform translate(0, 0)
+  img
+    position absolute
+    width calc(100% - 20px)
+    transition all .8s $easing
+    &.item-right
+      transform translate(80px, 0)
+      opacity 0
+    &.item-left
+      transform translate(-80px, 0)
+      opacity 0
+  &.front
+    z-index 1000
+  div
+    position absolute
+    width 100vw
+    transition all 2s $easing
+
+
+
+
+
+// ------------------------------------------------------------------------------------
+// MIXINS
+// ------------------------------------------------------------------------------------
+
+.item
+  position relative
+  z-index 5
+  filter brightness(100%)
+  opacity 1
+
+.item.item-unloaded
+  opacity 0
+  // margin-top -15vh
+  transform translateY(-10vh)
+  transition opacity 1.2s ease-out, transform .6s cubic-bezier(.25,.85,1,.9), filter .6s ease-out !important
+  // transition opacity 1.2s ease-out, margin-top 1.2s cubic-bezier(.25,.85,1,.9), filter .6s ease-out !important
+  filter brightness(1000%)
+
+.item.item-hidden
+  opacity 0
+  margin-top -60px
+  transform translate(0, -80px)
+  transition margin-top .5s $easing
+
+.item-hidden-left
+  opacity 0
+  margin-left -80px
+  transform translate(-80px, 0px)
+  transition all .5s $easing
+
+.item-hidden-right
+  opacity 0
+  margin-right -80px
+  transform translate(80px, 0px)
+  transition all .5s $easing
+
+.item-hidden-down
+  opacity 0
+  margin-bottom -130px
+  transform translate(0px, 130px)
+  transition all .5s $easing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.full
+  z-index 1000
+  position fixed
+  top 0
+  left 0
+  width 100vw
+  height 100vh
+  background #fffacd
+  background #f4f9ff
+  transition all .2s $easing
+  &.item-hidden
+    z-index -1
+
+.questionText
+  position fixed
+  top 3vh
+  left 0
+  padding 0
+  z-index 9000
+  font-weight 800
+  letter-spacing .01em
+  width 100vw
+  text-align center
+  transition all .4s $easing
+  opacity 1
+  &.hidden
+    top -100px
+    opacity 0
+
+#questionText
+  font-size calc(1.6vw + 1.6vh) !important
+  transition all .3s ease-in
+
+#question
+  transition all .3s ease-in
+
+.currentAnswer
+  position absolute
+  bottom 4.5vh
+  width 100vw
+  text-align center
+  z-index 9999
+  transition all .4s $easing
+  font-size 4.2vh
+  opacity 1
+  &.hidden
+    bottom -100px
+    opacity 0
+
+img, p, div
+  user-select none
+  -moz-user-select none
+  -khtml-user-select none
+  -webkit-user-select none
+  -o-user-select none
+
+#classroom-bg
+  position relative
+  display block
+  z-index 1
+
+#floor
+  position fixed
+  z-index 1
+  top -20vh
+  width 200vw !important
+  left -50vw
+  height 150vh !important
+
+
+#controls
+  height 100vh
+  position absolute
+  width 100vw
+  top 0
+  left 0
+
+.arrow-left, .arrow-right
+  position absolute
+  top 50%
+  transform translate(0%, -50%)
+  min-width 25px
+  min-height 25px
+  max-width 50px
+  max-height 50px
+  width 10vw
+  height 10vw
+  background #558
+  padding calc(.3vw + .3vh)
+  box-sizing border-box
+  border-radius 5px
+  animation wiggle 1.8s linear infinite
+  animation-play-state paused
+  z-index 9999
+  display block
+  &:hover
+    cursor pointer
+    animation-play-state running
+  img
+    width 100%
+
+.arrow-right
+  right 2vw
+
+.arrow-left
+  left 2vw
+
+.answer-button
+  display inline-block
+  padding 3px 25px
+  background #b4344b
+  color #fff
+  border-radius 5px
+  transition all .3s $easing
+  // animation wiggle 1.8s linear infinite
+  // animation-play-state paused
+  &:hover
+    cursor pointer
+    // animation-play-state running
+    background #622
+    color #fff4bd
+    transition all .3s $easing
+
+#dot-navigation
+  position fixed
+  bottom 30px
+  left 0
+  width 100vw
+  height 50px
+  .dot
+    display inline
+    margin 0 10px
+    width 16px
+    height 16px
+    background #000
+    &:hover
+      cursor pointer
+
+
+
+
+@keyframes wiggle {
+  0%, 7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%, 100% {
+    transform: rotateZ(0);
+  }
+}
+
+#overlay
+  position fixed
+  display block
+  top 0 !important
+  left 0
+  margin 0
+  padding 0
+  height 100vh
+  width 100vw
+  opacity 0
+  background rgba(255,0,100,1)
+  z-index 9
+  transition all .4s ease-in
+
+#base
+  display inline-block
+  width 100%
+  max-width 100%
+  transition opacity .5s ease-out !important
+
+#answer-wrapper
+  position fixed
+  top 0
+  left  0
+  height 100vh
+  width 100vw
+  z-index 20
+  #question
+    display block
+    position absolute
+    top 0px
+    width 80vw
+    left 50%
+    transform translate(-50%, 0)
+    text-align center
+    background #08D
+    padding 7px 15px 7px 15px
+    border-radius 0 0 7px 7px
+    transition all .5s ease-out
+    z-index 1000
+    h1
+      color #fff
+      text-transform uppercase
+      font-weight 700  !important
+      font-size .7vh + .7vw
+      margin 0
+
+.answer-item
+  position absolute
+  width 60%
+  height 50vh
+  margin 0 20%
+  bottom 10vh
+  background-size contain
+  background-repeat no-repeat
+  background-position center
+  transition margin .5s cubic-bezier(.25,.85,1,.9), filter 3s cubic-bezier(.25,.85,1,.9), transform 1.4s cubic-bezier(.25,.85,1,.9)
+  img
+    display inline-block
+    position relative
+
+.answer-text
+  display inline-block
+  position absolute
+  text-align center
+  width  100%
+  bottom 3vh
+  font-family $font
+  font-size 2vh + 2vw
+  transition  all .5s ease-out
+  font-weight 700 !important
+  z-index 9999
+
+#answer3
+  top 100vh
+  right 0vw
+  width 0vw
+  height 0vh
+
+#answer2
+  top 100vh
+  left 0vw
+  width 0vw
+  height 0vh
+
+#answer1
+  top 0
+  right 0
+  width 0vw
+  height 0vh
+
+#answer0
+  top 0
+  left 0
+  width 0vw
+  height 0vh
+
+.answer-item
+  background-size contain !important
+  background-repeat no-repeat !important
+  background-position center  !important
+  animation emptyanim
+  animation-play-state paused
+
+.answer-block
+  display inline-block
+  position absolute
+  top 0
+  overflow hidden
+  margin 0
+  padding 0
+  height 100vh
+  width 0vw
+  // transition all .6s cubic-bezier(.91,.03,.66,.9)
+  transition all .6s cubic-bezier(.50,.0,.50,1)
+
+  // transition all .5s ease-in
+  &:hover
+    cursor pointer
+    .answer-item
+      transition all .5s ease-in
+      animation wiggle 1.8s linear
+      animation-play-state running
+      filter brightness(150%)
+
+@keyframes emptyanim {}
+
+.question-hidden
+  opacity 0
+  margin-top -100px
+  transition all .3s ease-in
+
+
+/*Cloud: Animation*/
+.cloud {
+  -webkit-animation-name: cloud-movement;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-direction: forwards;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 2s;
+
+  -moz-animation-name: cloud-movement;
+  -moz-animation-timing-function: linear;
+  -moz-animation-direction: forwards;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-duration: 2s;
+
+  animation-name: cloud-movement;
+  animation-timing-function: linear;
+  animation-direction: forwards;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+}
+
+#clouds {
+  position: absolute;
+  opacity: 0;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  overflow: hidden;
+  transform: translateZ(0);
+  z-index: 101;
+  transition: all .7s ease-in;
+}
+
+.cloud {
+  position: absolute;
+  bottom: 0;
+  width: 50px;
+  left:  0;
+  opacity: 1;
+}
+
+.cloud.n1 {
+  left: 5%;
+  animation-duration: .9s;
+}
+
+.cloud.n2 {
+  left: 24%;
+  animation-duration: .6s;
+}
+
+.cloud.n3 {
+  left: 44%;
+  animation-duration: .7s;
+}
+
+.cloud.n4 {
+  left: 67%;
+  animation-duration: .5s;
+}
+
+.cloud.n5 {
+  left: 88%;
+  animation-duration: .8s;
+}
+
+@-webkit-keyframes cloud-movement {
+  0% {
+    opacity: 0.2;
+    -webkit-transform: translateY(20vh);
+    -moz-transform: translateY(20vh);
+    transform: translateY(20vh);
+  }
+  10% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.2;
+    -webkit-transform: translateY(-100vh);
+    -moz-transform: translateY(-100vh);
+    transform: translateY(-100vh);
+  }
+}
+
+#flash
+  position fixed
+  width 100vw
+  height 100vh
+  top 0
+  left 0
+  background #fff
+  display none
+  opacity .2
+  transition all .5s ease-out
+  z-index 9999999
+
+#flash.hidden
+  opacity 0
+  transition all .8s ease-out
+
+#intro-title
+  &.hidden
+    opacity 0
+    margin -50px 0 0 0
+  position absolute
+  text-align center
+  top 50%
+  width 100%
+  left 50%
+  transform translate(-50%,-50%)
+  transition all 1s ease-in
+  h1,h2
+    max-width 70vw
+    margin 0 auto 3vh auto
+    font-family $font
+    font-weight 700 !important
+    text-transform uppercase
+    text-align center
+    font-size calc(2vh+2vw) !important
+    line-height 1.3em !important
+    color #fff
+  h1
+    width 100%
+    font-size calc(4vw + 4vh) !important
+    line-height calc(6vw + 6vh)
+  h2
+    color #fff
+    width 100%
+    font-size calc(2.2vw + 2.2vh) !important
+    opacity .85
+  img
+    max-width calc(23vh + 23vw) !important
+
+#question-intro
+  position fixed
+
+#continue-wrapper
+  width 100vw
+  position fixed
+  bottom 4vh
+  z-index 99900
+  transition all .4s $easing
+
+#continue
+  position relative
+  left 0
+  padding 10px 20px
+  background #08d
+  font-weight 800c
+  color #fff
+  letter-spacing .01em
+  width 30vw
+  min-width 200px
+  border-radius 5px
+  margin auto
+  text-align center
+  font-size 4vh
+  transition all .4s $easing
+  opacity 1
+  &.hidden
+    transition all .4s $easing
+    pointer-events none
+    opacity 0
+  &:hover
+    cursor pointer
+
+#form-wrapper
+  opacity 0
+  pointer-events none
+  position fixed
+  width 100vw
+  height 100vh
+  top 0
+  left 0
+  z-index 999999
+  transition all .5s ease-out
+  .gender
+    display inline-block
+    width 100px
+    height 100px
+    transition all .3s ease-out
+    background #000
+    border-radius 5px
+    border 3px solid #fff
+    &#female
+      margin 10px !important
+      background url('../img/f.png')
+      background-size 90% 90%
+      background-position center
+      background-repeat no-repeat
+    &#male
+      margin 10px !important
+      background url('../img/m.png')
+      background-size 80% 80%
+      background-position center
+      background-repeat no-repeat
+    &:hover
+      background #fff
+      cursor pointer
+    &.selected
+      border-color #ff0064
+
+
+#endform
+  display block
+  width 80vw
+  max-width 600px
+  max-height 90vh
+  position absolute
+  overflow-y scroll
+  top 50%
+  left 50%
+  transform translate(-50%, -50%)
+  background #fff
+  border-radius 5px
+  padding 20px
+  text-align center
+  z-index 9999999
+  h1
+    margin 30px
+  input
+    display inline-block
+    padding 10px 0px 3px 0
+    width 80%
+    max-width 400px
+    font-size 14px
+    margin-bottom 20px
+    text-align center
+    border 0
+    border-bottom 1px solid #000
+  .button
+    background-color #ff0064
+    border-color #ff0064
+    &:hover
+      background #fff
+      color #ff0064 !important
+
+#timer
+  position fixed
+  bottom 0
+  left 0
+  width 0
+  height 3vh
+  opacity .6
+  background #fff
+  z-index 9
+
+#counter
+  position fixed
+  top 10px
+  left 10px
+  z-index 9999
+  h1
+    font-family $font
+    color #fff
+    font-weight 900 !important
+    margin 0
+    padding 0
+
+#pause
+  position fixed
+  top 0px
+  right 0px
+  padding 15px
+  color #fff
+  font-size 1.8em
+  z-index 9999
+  transition .2s all ease-out
+  &:hover
+    opacity .8
+    transform scale(1.4)
+    cursor pointer
+
+#ergebnis
+  display none
+  position absolute
+  width 100vw
+  top 100vh
+  background #fff
+  padding 0 0 70px 0
+  .content
+    padding 0 20px
+    box-sizing border-box
+    max-width 700px
+    margin auto
+    h1
+      color #ff0064
+      font-weight bold !important
+      margin 30px 0 10px 0
+    p
+      line-height 1.4em
+    input
+      width 100%
+      padding 10px 20px
+      box-sizing border-box
+      color #777
+      font-family $font
+      font-size .9em
+      margin-top 10px
+      border-radius 3px
+      border 3px solid #00AAFF
+
+.button
+  display block
+  background #00AAFF
+  padding 15px
+  border 3px solid #00AAFF
+  margin 50px auto 0 auto
+  color #fff !important
+  font-weight bold !important
+  border-radius 2px
+  text-align center
+  text-transform uppercase
+  transition .2s all ease-out
+  text-decoration none !important
+  &:hover
+    background #fff
+    color #00AAFF !important
+    cursor pointer
+
+#sharelink
+  display inline-block
+  width calc(60% - 7px) !important
+
+#copy-button
+  display inline-block
+  width calc(40% - 7px) !important
+  margin-left 14px
+  padding 8px
+  border-radius 3px
+  border 3px solid #0af
+  background #0af
+  color #fff
+  font-weight 700 !important
+  text-transform uppercase
+  text-align center
+  transition all .2s ease-out
+  &:hover
+    cursor pointer
+    background #fff
+    color #0af
+  &.done
+    background #0d5
+    border-color #0d5
+    &:hover
+      background #fff
+      color #0d5
+
+@media screen and (orientation:portrait) {
+  .answer-text{
+    bottom 10vh
+  }
+}
+
+
+@media (max-width: 700px) {
+  #questionText{
+    font-size calc(2.2vw + 2.2vh) !important
+  }
+}
+
+
+
+#anchor
+  text-align center
+  img
+    max-width 100%
+
+#start-wrapper
+  width 100vw
+  position fixed
+  text-align center
+  bottom 7vh
+  z-index 9999999999
+
+#start
+  border none
+  font-size 20px
+  margin auto
+  width 50vw
+  text-align center
+  background #ff0064
+  transition all .5s ease-out
+  &.hidden
+    opacity 0
+    transform translateY(20px)
+  &:hover
+    background #fff
