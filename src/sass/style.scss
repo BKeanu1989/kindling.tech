@@ -76,6 +76,16 @@ a {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+
+  #logo{
+    width: 70vw;
+    height: 50vh;
+    line, path{
+      stroke-width: 0;
+      // stroke-linecap: round;
+      stroke: #fff;
+    }
+  }
   svg{
     position: relative;
     display: block;
@@ -100,23 +110,10 @@ a {
   }
 }
 
+
+
 @media (max-width: 800px) {
   .portfolio-item, .portfolio-display, .portfolio-content {
     display:block
   }
-}
-
-#logo{
-  width: 70vw;
-  height: 50vh;
-  line{
-    stroke-width: 3 !important;
-    stroke-linecap: round;
-  }
-}
-
-
-
-#logo line{
-  stroke: #fff;
 }
