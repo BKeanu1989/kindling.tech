@@ -1,26 +1,39 @@
+/* -------------------------------------------------------- */
+/* BASE */
+/* -------------------------------------------------------- */
 body {
   width: 100vw;
   height: 100vh;
-  background: #eee;
+  background: #f6f6f6;
   margin: 0;
   padding: 0;
 }
 
-h1, h2, h3, p, div, b, span{
+h1, h2, h3, p, div, b, a, span{
   font-family: "Raleway";
 }
+
 hr {
   max-width: 450px;
   opacity: .3;
 }
+
 a {
   text-decoration: none;
 }
+
+
+
+
+/* -------------------------------------------------------- */
+/* PORTFOLIO */
+/* -------------------------------------------------------- */
 .portfolio-item {
-  margin: 100px 0 120px 0;
+  margin: 130px 0 150px 0;
   display: flex;
   justify-content: center;
 }
+
 .portfolio-display {
   display: flex;
   width: 400px;
@@ -28,16 +41,29 @@ a {
   height: 270px;
   transform-style: preserve-3d;
 }
+
 .portfolio-content{
   padding-left: 100px;
   box-sizing: border-box;
+  .icon{
+    padding: 0 0 0 1px;
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    transition: all .2s ease-in;
+    &:hover{
+      transform: translateX(10px);
+    }
+  }
 }
+
 .portfolio-content h1{
   flex-grow: .5;
   text-transform: uppercase;
   font-size: 3em;
   max-width: 450px;
 }
+
 .portfolio-content p{
   width: 80%;
   max-width: 450px;
@@ -45,15 +71,18 @@ a {
   box-sizing: border-box;
   line-height: 1.8em;
 }
+
 .portfolio-desktop, .portfolio-mobile{
   background-size: cover !important;
 }
+
 .portfolio-desktop{
   position: absolute;
   width: 370px;
   height: 250px;
   margin: auto;
 }
+
 .portfolio-mobile{
   position: absolute;
   width: 140px;
@@ -63,10 +92,20 @@ a {
   transform: translateZ(30px);
   margin: auto;
 }
+
 .portfolio-display.right{
   margin-left: -50px;
 }
-.header{
+
+
+
+
+
+
+/* -------------------------------------------------------- */
+/* HEADER */
+/* -------------------------------------------------------- */
+#header{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,14 +115,15 @@ a {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-
   #logo{
+    margin-top: -10vh;
     width: 70vw;
     height: 50vh;
     line, path{
       stroke-width: 0;
-      // stroke-linecap: round;
+      stroke-linecap: round;
       stroke: #fff;
+      fill: none;
     }
   }
   svg{
@@ -112,8 +152,102 @@ a {
 
 
 
+
+
+/* -------------------------------------------------------- */
+/* NAVIGATION */
+/* -------------------------------------------------------- */
+nav{
+  position: absolute;
+  z-index: 100;
+  bottom: 30px;
+  width: 100vw;
+  text-align: center;
+  margin: 0;
+  transition: all .4s ease-out;
+  ul{
+    margin: 0;
+    padding: 0;
+    li{
+      list-style: none;
+      display: inline-block;
+      padding: 0 30px 0 0;
+      &:last-child{
+        padding: 0;
+      }
+      a{
+        display: block;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 1.3em;
+        padding: 20px;
+        transition: all .4s ease-out;
+        border-top: 3px solid rgba(0,0,0,0);
+        border-bottom: 3px solid rgba(0,0,0,0);
+        &:hover{
+          border-top: 3px solid #fff;
+          border-bottom: 3px solid #fff;
+          padding: 10px 20px;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+/* -------------------------------------------------------- */
+/* SECTIONS */
+/* -------------------------------------------------------- */
+.section{
+  width: 100vw;
+  overflow: hidden;
+  .title{
+    padding: 50px 0;
+    font-size: 3em;
+    width: 100vw;
+    text-align: center;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #fff;
+  }
+}
+
+#contact{
+  background: #9df;
+  height: 80vh;
+}
+
+#about{
+  background: #2af;
+  height: 80vh;
+}
+
+#intro{
+  background: #2af;
+  text-align: center;
+  #quote{
+    padding: 50px 20px;
+    font-size: 2em;
+    font-weight: 200;
+    // text-transform: uppercase;
+    color: #2ef;
+  }
+}
+
+
+
+
+/* -------------------------------------------------------- */
+/* RESPONSIVE */
+/* -------------------------------------------------------- */
 @media (max-width: 800px) {
   .portfolio-item, .portfolio-display, .portfolio-content {
-    display:block
+    display: block;
   }
 }

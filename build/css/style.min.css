@@ -1,11 +1,14 @@
+/* -------------------------------------------------------- */
+/* BASE */
+/* -------------------------------------------------------- */
 body {
   width: 100vw;
   height: 100vh;
-  background: #eee;
+  background: #f6f6f6;
   margin: 0;
   padding: 0; }
 
-h1, h2, h3, p, div, b, span {
+h1, h2, h3, p, div, b, a, span {
   font-family: "Raleway"; }
 
 hr {
@@ -15,8 +18,11 @@ hr {
 a {
   text-decoration: none; }
 
+/* -------------------------------------------------------- */
+/* PORTFOLIO */
+/* -------------------------------------------------------- */
 .portfolio-item {
-  margin: 100px 0 120px 0;
+  margin: 130px 0 150px 0;
   display: flex;
   justify-content: center; }
 
@@ -30,6 +36,14 @@ a {
 .portfolio-content {
   padding-left: 100px;
   box-sizing: border-box; }
+  .portfolio-content .icon {
+    padding: 0 0 0 1px;
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    transition: all .2s ease-in; }
+    .portfolio-content .icon:hover {
+      transform: translateX(10px); }
 
 .portfolio-content h1 {
   flex-grow: .5;
@@ -65,7 +79,10 @@ a {
 .portfolio-display.right {
   margin-left: -50px; }
 
-.header {
+/* -------------------------------------------------------- */
+/* HEADER */
+/* -------------------------------------------------------- */
+#header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,24 +92,27 @@ a {
   width: 100vw;
   height: 100vh;
   overflow: hidden; }
-  .header #logo {
+  #header #logo {
+    margin-top: -10vh;
     width: 70vw;
     height: 50vh; }
-    .header #logo line, .header #logo path {
+    #header #logo line, #header #logo path {
       stroke-width: 0;
-      stroke: #fff; }
-  .header svg {
+      stroke-linecap: round;
+      stroke: #fff;
+      fill: none; }
+  #header svg {
     position: relative;
     display: block;
     z-index: 10; }
-  .header h1 {
+  #header h1 {
     position: absolute;
     z-index: 9;
     display: block;
     font-family: "Slim Joe";
     color: #fff;
     font-size: 4em; }
-  .header .darken {
+  #header .darken {
     position: absolute;
     z-index: 1;
     top: 0;
@@ -101,6 +121,76 @@ a {
     width: 100vw;
     background: rgba(0, 0, 0, 0.7); }
 
+/* -------------------------------------------------------- */
+/* NAVIGATION */
+/* -------------------------------------------------------- */
+nav {
+  position: absolute;
+  z-index: 100;
+  bottom: 30px;
+  width: 100vw;
+  text-align: center;
+  margin: 0;
+  transition: all .4s ease-out; }
+  nav ul {
+    margin: 0;
+    padding: 0; }
+    nav ul li {
+      list-style: none;
+      display: inline-block;
+      padding: 0 30px 0 0; }
+      nav ul li:last-child {
+        padding: 0; }
+      nav ul li a {
+        display: block;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 1.3em;
+        padding: 20px;
+        transition: all .4s ease-out;
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent; }
+        nav ul li a:hover {
+          border-top: 3px solid #fff;
+          border-bottom: 3px solid #fff;
+          padding: 10px 20px; }
+
+/* -------------------------------------------------------- */
+/* SECTIONS */
+/* -------------------------------------------------------- */
+.section {
+  width: 100vw;
+  overflow: hidden; }
+  .section .title {
+    padding: 50px 0;
+    font-size: 3em;
+    width: 100vw;
+    text-align: center;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #fff; }
+
+#contact {
+  background: #9df;
+  height: 80vh; }
+
+#about {
+  background: #2af;
+  height: 80vh; }
+
+#intro {
+  background: #2af;
+  text-align: center; }
+  #intro #quote {
+    padding: 50px 20px;
+    font-size: 2em;
+    font-weight: 200;
+    color: #2ef; }
+
+/* -------------------------------------------------------- */
+/* RESPONSIVE */
+/* -------------------------------------------------------- */
 @media (max-width: 800px) {
   .portfolio-item, .portfolio-display, .portfolio-content {
     display: block; } }
