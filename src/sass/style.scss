@@ -41,7 +41,7 @@ a {
 
 .portfolio-display {
   display: flex;
-  width: 400px;
+  width: 500px;
   margin-left: 60px;
   height: 270px;
   transform-style: preserve-3d;
@@ -62,11 +62,16 @@ a {
   }
 }
 
-.portfolio-content h1{
-  flex-grow: .5;
-  text-transform: uppercase;
-  font-size: 3em;
-  max-width: 450px;
+.portfolio-content{
+  h1{
+    flex-grow: .5;
+    text-transform: uppercase;
+    font-size: 3em;
+    max-width: 450px;
+  }
+  a{
+    color: #eb0;
+  }
 }
 
 .portfolio-content p{
@@ -198,8 +203,8 @@ nav{
         color: #fff;
         text-transform: uppercase;
         font-weight: 400;
-        font-size: 1.3em;
-        padding: 20px;
+        font-size: 1.2em;
+        padding: 10px 20px;
         transition: all .4s ease-out;
         border-top: 3px solid rgba(0,0,0,0);
         border-bottom: 3px solid rgba(0,0,0,0);
@@ -208,9 +213,9 @@ nav{
           transform: translateY(50px);
         }
         &:hover{
-          border-top: 3px solid #fff;
-          border-bottom: 3px solid #fff;
-          padding: 10px 20px;
+          // border-top: 3px solid #fff;
+          // border-bottom: 3px solid #fff;
+
         }
       }
     }
@@ -240,13 +245,20 @@ nav{
   }
 }
 
-
-
 #about{
-  background: #2af;
-  background: #333;
+  background: #222;
   text-align: center;
-  padding: 50px 0;
+  color: #fff;
+  padding: 70px 0;
+  line-height: 1.7em;
+  h1{
+    color: #eb0;
+    text-transform: uppercase;
+  }
+  .container{
+    margin: auto;
+    max-width: 600px;
+  }
 }
 
 #work{
@@ -300,15 +312,15 @@ footer{
 .form{
   max-width: 400px;
   margin: auto;
+  h1{
+    text-transform: uppercase;
+  }
 }
 
 
 
 
 #contact{
-  background: #9df;
-  background: #fa0;
-  background: #722;
   background: #eb0;
   color: #fff;
 }
@@ -387,18 +399,24 @@ textarea, input{
 
 .right{
   margin-left: 50%;
-  padding-top: 70px;
+  padding-top: 30px;
 }
 
 #contact{
   position: relative;
 }
 
-#maps{
+#map{
   position: absolute;
   display: inline-block;
-  background: url('../img/map.jpg');
+  // background: url('../img/map.jpg');
   background-size: cover;
   min-height: 600px;
   margin: 0 20px 0 0;
+}
+
+
+
+.letter-part{
+  transition: transform .3 ease-out !important;
 }
