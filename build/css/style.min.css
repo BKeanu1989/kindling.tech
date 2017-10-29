@@ -33,7 +33,7 @@ a {
 
 .portfolio-display {
   display: flex;
-  width: 400px;
+  width: 500px;
   margin-left: 60px;
   height: 270px;
   transform-style: preserve-3d; }
@@ -55,6 +55,9 @@ a {
   text-transform: uppercase;
   font-size: 3em;
   max-width: 450px; }
+
+.portfolio-content a {
+  color: #eb0; }
 
 .portfolio-content p {
   width: 80%;
@@ -162,18 +165,14 @@ nav {
         color: #fff;
         text-transform: uppercase;
         font-weight: 400;
-        font-size: 1.3em;
-        padding: 20px;
+        font-size: 1.2em;
+        padding: 10px 20px;
         transition: all .4s ease-out;
         border-top: 3px solid transparent;
         border-bottom: 3px solid transparent; }
         nav ul li a.hidden {
           opacity: 0;
           transform: translateY(50px); }
-        nav ul li a:hover {
-          border-top: 3px solid #fff;
-          border-bottom: 3px solid #fff;
-          padding: 10px 20px; }
 
 /* -------------------------------------------------------- */
 /* SECTIONS */
@@ -191,10 +190,19 @@ nav {
     color: #fff; }
 
 #about {
-  background: #2af;
-  background: #333;
+  background: #222;
   text-align: center;
-  padding: 50px 0; }
+  color: #fff;
+  padding: 70px 0;
+  line-height: 1.7em; }
+  #about h1 {
+    color: #eb0;
+    line-height: 1.5em;
+    text-transform: uppercase; }
+  #about .container {
+    text-align: center;
+    margin: auto;
+    max-width: 600px; }
 
 #work {
   background: #f6f6f6; }
@@ -233,11 +241,10 @@ footer {
 .form {
   max-width: 400px;
   margin: auto; }
+  .form h1 {
+    text-transform: uppercase; }
 
 #contact {
-  background: #9df;
-  background: #fa0;
-  background: #722;
   background: #eb0;
   color: #fff; }
 
@@ -299,15 +306,17 @@ textarea, input {
 
 .right {
   margin-left: 50%;
-  padding-top: 70px; }
+  padding-top: 30px; }
 
 #contact {
   position: relative; }
 
-#maps {
+#map {
   position: absolute;
   display: inline-block;
-  background: url("../img/map.jpg");
   background-size: cover;
   min-height: 600px;
   margin: 0 20px 0 0; }
+
+.letter-part {
+  transition: transform .3 ease-out !important; }

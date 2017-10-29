@@ -7,6 +7,7 @@ var stylus = require('gulp-stylus')
 var htmlmin = require('gulp-htmlmin')
 var pump = require('pump')
 var concat = require('gulp-concat')
+var babel = require('gulp-babel');
 var uglify = require('gulp-uglify')
 var headerfooter = require('gulp-headerfooter')
 var sass = require('gulp-sass')
@@ -55,7 +56,8 @@ gulp.task('image', function() {
     gifsicle: false,
     svgo: false,
     concurrent: 10
-  })).pipe(gulp.dest('./build/img')).pipe(browserSync.stream());
+  })).pipe(gulp.dest('./build/img'))
+  // .pipe(browserSync.stream());
 });
 
 gulp.task('minimage', function() {
@@ -72,7 +74,7 @@ gulp.task('stylus', function() {
       suffix: '.min'
     }))
     .pipe(gulp.dest('./build/css'))
-    .pipe(browserSync.stream())
+    // .pipe(browserSync.stream())
 })
 
 // ----------------------------------------------------------------
@@ -85,7 +87,7 @@ gulp.task('sass', function() {
       suffix: '.min'
     }))
     .pipe(gulp.dest('./build/css'))
-    .pipe(browserSync.stream())
+    // .pipe(browserSync.stream())
 })
 
 // ----------------------------------------------------------------
@@ -95,7 +97,7 @@ gulp.task('css', function() {
   return gulp.src('./src/css/*.css')
     // .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./build/css'))
-    .pipe(browserSync.stream())
+    // .pipe(browserSync.stream())
 })
 
 // ----------------------------------------------------------------
@@ -109,23 +111,52 @@ gulp.task('html', function() {
       collapseWhitespace: true
     }))
     .pipe(gulp.dest('build'))
-    .pipe(browserSync.stream())
+    // .pipe(browserSync.stream())
 })
 
 // ----------------------------------------------------------------
 // JAVASCRIPT
 // ----------------------------------------------------------------
-gulp.task('js', function(cb) {
-  pump([
-      gulp.src('src/js/*.js'),
-      concat('bundle.min.js'),
-      // uglify(),
-      gulp.dest('build/js'),
-      browserSync.stream()
-    ],
-    cb
-  )
+// gulp.task('js', function(cb) {
+//   pump([
+//       gulp.src('src/js/*.js'),
+//       concat('bundle.min.js'),
+//       // uglify(),
+//       gulp.dest('build/js'),
+//       browserSync.stream()
+//     ],
+//     cb
+//   )
+// })
+
+
+
+gulp.task('js', function () {
+  return gulp.src('src/js/*.js')
+    .pipe(babel())
+    // .pipe(rename({
+    //   suffix: '.min'
+    // }))
+    .pipe(concat('bundle.min.js'))
+    .pipe(gulp.dest('build/js'))
+    .pipe(browserSync.stream())
 })
+
+
+// gulp.task('js', function(cb) {
+//   return gulp.src('src/js/*.js')
+//     .pipe()
+//       gulp.src('src/js/*.js'),
+//       concat('bundle.min.js'),
+//       // uglify(),
+//       gulp.dest('build/js'),
+//       browserSync.stream()
+//     ],
+//     cb
+//   )
+// })
+//
+// .pipe(babel())
 
 // ----------------------------------------------------------------
 // BROWSER-SYNC (STATIC SERVER)
