@@ -253,11 +253,18 @@ nav{
   line-height: 1.7em;
   h1{
     color: #eb0;
+    line-height: 1.5em;
     text-transform: uppercase;
   }
   .container{
+    text-align: center;
     margin: auto;
     max-width: 600px;
+    .left, .right{
+      // display: inline-block;
+      // fill: #fff;
+      // width: calc(50% - 20px);
+    }
   }
 }
 
